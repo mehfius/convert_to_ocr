@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VideoText AI - Extraia Texto de Vídeos</title>
+    <title>VideoText AI - Extraia Áudio de Vídeos</title>
     <script src="tailwindcss.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -14,6 +14,59 @@
         .hero-bg {
             background: linear-gradient(to right, #6366f1, #8b5cf6); /* Gradient from indigo to purple */
         }
+        /* Custom modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* FFmpeg progress bar styles */
+        #progressBarContainer {
+            width: 100%;
+            background-color: #e2e8f0; /* Tailwind gray-200 */
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden; /* Ensure rounded corners apply to inner div */
+        }
+        #progressBar { /* This will be the inner div, matching user's JS */
+            height: 24px; /* Slightly taller */
+            background-color: #4CAF50; /* Green */
+            text-align: center;
+            line-height: 24px;
+            color: white;
+            border-radius: 5px; /* Apply to inner div as well */
+            width: 0%;
+            transition: width 0.3s ease-in-out; /* Smooth transition for progress */
+        }
     </style>
 </head>
 <body class="antialiased text-gray-800">
@@ -21,10 +74,10 @@
     <section class="hero-bg text-white py-20 md:py-32 rounded-b-3xl shadow-lg">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
-                Extraia o Texto de Qualquer Vídeo Instantaneamente
+                Extraia o Áudio de Qualquer Vídeo Instantaneamente
             </h1>
             <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
-                Transforme seu conteúdo de vídeo em texto editável e pesquisável com nossa ferramenta poderosa e intuitiva.
+                Transforme o seu conteúdo de vídeo em áudio MP3 com a nossa ferramenta poderosa e intuitiva.
             </p>
             <a href="#demonstracao" class="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-bounce-in">
                 Experimente Agora
@@ -34,22 +87,22 @@
 
     <section class="py-16 md:py-24 bg-white rounded-3xl mx-4 -mt-16 relative z-10 shadow-xl">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Recursos que Você Vai Amar</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Recursos que Vai Adorar</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-5xl mb-4 text-indigo-500">✍️</div>
-                    <h3 class="text-xl font-semibold mb-3">Precisão Incrível</h3>
-                    <p class="text-gray-600">Nossa IA avançada garante transcrições altamente precisas, mesmo em vídeos com áudio desafiador.</p>
+                    <div class="text-5xl mb-4 text-indigo-500">🎧</div>
+                    <h3 class="text-xl font-semibold mb-3">Áudio de Alta Qualidade</h3>
+                    <p class="text-gray-600">Extraia áudio com fidelidade, preservando a qualidade original do seu vídeo.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
                     <div class="text-5xl mb-4 text-purple-500">⚡</div>
                     <h3 class="text-xl font-semibold mb-3">Velocidade Relâmpago</h3>
-                    <p class="text-gray-600">Obtenha suas transcrições em minutos, não em horas, economizando seu tempo valioso.</p>
+                    <p class="text-gray-600">Obtenha os seus ficheiros MP3 em minutos, economizando o seu tempo valioso.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
                     <div class="text-5xl mb-4 text-pink-500">🌐</div>
                     <h3 class="text-xl font-semibold mb-3">Suporte a Múltiplos Formatos</h3>
-                    <p class="text-gray-600">Compatível com os formatos de vídeo mais populares para sua conveniência.</p>
+                    <p class="text-gray-600">Compatível com os formatos de vídeo mais populares para a sua conveniência.</p>
                 </div>
             </div>
         </div>
@@ -59,7 +112,7 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Veja Como Funciona</h2>
             <p class="text-lg text-gray-700 text-center mb-10 max-w-2xl mx-auto">
-                Faça o upload do seu vídeo e nossa ferramenta fará a mágica de transformar a fala em texto. É simples, rápido e eficiente!
+                Faça o upload do seu vídeo e a nossa ferramenta fará a magia de transformar o áudio em MP3. É simples, rápido e eficiente!
             </p>
 
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg max-w-2xl mx-auto border border-gray-200">
@@ -70,28 +123,30 @@
                         <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                         </svg>
-                        <p class="mt-4 text-lg text-gray-600">Arraste e solte seu vídeo aqui ou <span class="font-medium text-indigo-600 hover:text-indigo-500">clique para selecionar</span></p>
-                        <p class="text-sm text-gray-500">(Max. 500MB)</p>
+                        <p class="mt-4 text-lg text-gray-600">Arraste e solte o seu vídeo aqui ou <span class="font-medium text-indigo-600 hover:text-indigo-500">clique para selecionar</span></p>
+                        <p class="text-sm text-gray-500">(Máx. 500MB)</p>
                     </label>
                     <p id="fileName" class="mt-4 text-sm text-gray-700 font-medium"></p>
                 </div>
 
-                <button onclick="extractText()" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
-                    Extrair Texto
+                <button id="extractBtn" onclick="extractAudio()" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                    Extrair Áudio (MP3)
                 </button>
+
+                <p id="status" class="mt-6 text-center text-gray-700">Status: A carregar FFmpeg...</p>
+
+                <div id="progressBarContainer" class="mt-4">
+                    <div id="progressBar" class="h-6 bg-green-500 text-white text-center rounded-md transition-all duration-300 ease-in-out" style="width: 0%;">0%</div>
+                </div>
 
                 <div id="loadingIndicator" class="hidden mt-6 text-center text-indigo-600 font-semibold">
                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 inline-block"></div>
-                    <p class="mt-2">Extraindo texto, por favor aguarde...</p>
+                    <p class="mt-2">A extrair áudio, por favor aguarde...</p>
                 </div>
 
-                <div id="extractedTextContainer" class="hidden mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg shadow-inner">
-                    <h4 class="text-xl font-semibold mb-4 text-indigo-800">Texto Extraído:</h4>
-                    <pre id="extractedText" class="whitespace-pre-wrap text-gray-800 text-base leading-relaxed"></pre>
-                    <button onclick="copyToClipboard()" class="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200 ease-in-out">
-                        Copiar Texto
-                    </button>
-                    <div id="copyMessage" class="hidden mt-2 text-sm text-green-700">Texto copiado!</div>
+                <div id="audioDownloadContainer" class="hidden mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg shadow-inner text-center">
+                    <h4 class="text-xl font-semibold mb-4 text-indigo-800">Áudio Extraído:</h4>
+                    <a id="audioDownloadLink" href="#" class="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200 ease-in-out" download>Descarregar Áudio (MP3)</a>
                 </div>
             </div>
         </div>
@@ -100,82 +155,155 @@
     <footer class="bg-gray-800 text-white py-10 mt-16 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-6 text-center">
             <p class="mb-4">&copy; 2025 VideoText AI. Todos os direitos reservados.</p>
-            <p class="text-sm">Desenvolvido com ❤️ para transformar seus vídeos.</p>
+            <p class="text-sm">Desenvolvido com ❤️ para transformar os seus vídeos.</p>
             <div class="mt-6 flex justify-center space-x-6">
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Privacidade</a>
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Termos de Serviço</a>
-                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Contato</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Contacto</a>
             </div>
         </div>
     </footer>
 
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeMessageModal()">&times;</span>
+            <p id="modalMessage" class="text-lg text-gray-800"></p>
+            <button onclick="closeMessageModal()" class="mt-6 bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition duration-300">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js"></script>
+
     <script>
+        // Global functions for custom modal (replaces alert)
+        function showMessage(message) {
+            const modal = document.getElementById('messageModal');
+            const modalMessage = document.getElementById('modalMessage');
+            modalMessage.textContent = message;
+            modal.style.display = 'flex'; // Use flex to center the modal
+        }
+
+        // Global function to close the custom message modal
+        function closeMessageModal() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'none';
+        }
+
+        // FFmpeg setup
+        const { createFFmpeg, fetchFile } = FFmpeg;
+        const ffmpeg = createFFmpeg({ log: true }); // log: true for debugging in console
+
+        // DOM elements
+        const videoInput = document.getElementById('videoUpload');
+        const extractButton = document.getElementById('extractBtn');
+        const statusDisplay = document.getElementById('status'); // Renamed to avoid conflict with `status` variable in user's code
+        const progressBar = document.getElementById('progressBar'); // Inner div for progress
+        const fileNameDisplay = document.getElementById('fileName');
+        const loadingIndicator = document.getElementById('loadingIndicator'); // General loading for extraction
+        const audioDownloadContainer = document.getElementById('audioDownloadContainer');
+        const audioDownloadLink = document.getElementById('audioDownloadLink');
+
+        // Load FFmpeg once on page load
+        (async () => {
+            try {
+                await ffmpeg.load();
+                statusDisplay.textContent = 'Status: FFmpeg carregado. Aguardando seleção...';
+                extractButton.disabled = false; // Enable button once FFmpeg is loaded
+            } catch (error) {
+                console.error("Erro ao carregar FFmpeg:", error);
+                statusDisplay.textContent = 'Status: Erro ao carregar FFmpeg.';
+                showMessage('Erro ao carregar a biblioteca de processamento de vídeo. Por favor, tente novamente mais tarde.');
+            }
+        })();
+
+        // Helper function to display selected file name
         function displayFileName(event) {
-            const fileNameDisplay = document.getElementById('fileName');
             if (event.target.files.length > 0) {
-                fileNameDisplay.textContent = `Arquivo selecionado: ${event.target.files[0].name}`;
+                fileNameDisplay.textContent = `Ficheiro selecionado: ${event.target.files[0].name}`;
             } else {
                 fileNameDisplay.textContent = '';
             }
         }
 
-        async function extractText() {
-            const videoInput = document.getElementById('videoUpload');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const extractedTextContainer = document.getElementById('extractedTextContainer');
-            const extractedText = document.getElementById('extractedText');
-            const copyMessage = document.getElementById('copyMessage');
+        // Function to handle audio extraction
+        async function extractAudio() {
+            const file = videoInput.files[0];
 
-            // Reset previous states
-            extractedTextContainer.classList.add('hidden');
-            copyMessage.classList.add('hidden');
-            extractedText.textContent = '';
+            // Reset UI elements
+            statusDisplay.textContent = '';
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            audioDownloadContainer.classList.add('hidden');
+            loadingIndicator.classList.add('hidden'); // Hide general loading if it was showing
 
-            if (videoInput.files.length === 0) {
-                alert('Por favor, selecione um arquivo de vídeo para upload.');
+            if (!file) {
+                showMessage('Por favor, selecione um ficheiro de vídeo primeiro.');
                 return;
             }
 
-            loadingIndicator.classList.remove('hidden');
+            loadingIndicator.classList.remove('hidden'); // Show general loading
+            statusDisplay.textContent = 'Status: A ler ficheiro...';
 
-            // Simulate API call for text extraction
-            // In a real application, you would send the video file to a backend API here.
-            // For this demo, we'll just simulate a delay and provide dummy text.
-            await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate 3 seconds delay
+            try {
+                // Clear previous files in FFmpeg's virtual file system
+                const filesInFS = ffmpeg.FS('readdir', '/');
+                if (filesInFS.includes('input.mp4')) ffmpeg.FS('unlink', 'input.mp4');
+                if (filesInFS.includes('output.mp3')) ffmpeg.FS('unlink', 'output.mp3');
 
-            const dummyText = `
-                Olá a todos! Bem-vindos à demonstração da nossa ferramenta VideoText AI.
-                Com esta ferramenta, você pode facilmente extrair texto de qualquer vídeo.
-                Basta fazer o upload do seu arquivo de vídeo e nós faremos o resto.
-                É perfeito para criar legendas, pesquisar conteúdo de vídeo ou apenas obter uma transcrição rápida.
-                Esperamos que você goste de usar nossa ferramenta!
-            `;
+                // Write new file to FFmpeg's virtual file system
+                ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
 
-            loadingIndicator.classList.add('hidden');
-            extractedText.textContent = dummyText.trim();
-            extractedTextContainer.classList.remove('hidden');
+                statusDisplay.textContent = 'Status: A extrair áudio...';
+
+                // Monitor progress
+                ffmpeg.setProgress(({ ratio }) => {
+                    const percent = Math.round(ratio * 100);
+                    progressBar.textContent = `${percent}%`;
+                    progressBar.style.width = `${percent}%`;
+                });
+
+                // Execute FFmpeg command
+                await ffmpeg.run('-i', 'input.mp4', '-q:a', '0', '-map', 'a', 'output.mp3');
+
+                // Finalizing
+                statusDisplay.textContent = 'Status: A gerar ficheiro de áudio...';
+                const data = ffmpeg.FS('readFile', 'output.mp3');
+
+                const audioBlob = new Blob([data.buffer], { type: 'audio/mpeg' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+
+                audioDownloadLink.href = audioUrl;
+                audioDownloadLink.download = 'audio-extraido.mp3';
+                audioDownloadLink.textContent = 'Descarregar Áudio (MP3)';
+                audioDownloadContainer.classList.remove('hidden');
+
+                statusDisplay.textContent = '✅ Áudio extraído com sucesso!';
+                progressBar.textContent = '100%';
+                progressBar.style.width = '100%';
+
+            } catch (error) {
+                console.error("Erro durante a extração de áudio:", error);
+                showMessage('Ocorreu um erro durante a extração do áudio. Por favor, tente novamente.');
+                statusDisplay.textContent = 'Status: Erro na extração.';
+                progressBar.style.width = '0%'; // Reset progress bar on error
+                progressBar.textContent = '0%';
+            } finally {
+                loadingIndicator.classList.add('hidden'); // Hide general loading
+            }
         }
 
-        function copyToClipboard() {
-            const extractedText = document.getElementById('extractedText');
-            const copyMessage = document.getElementById('copyMessage');
+        // Attach event listener to the extract button
+        extractButton.addEventListener('click', extractAudio);
 
-            // Use document.execCommand('copy') for better compatibility in iframes
-            const textArea = document.createElement("textarea");
-            textArea.value = extractedText.textContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                copyMessage.classList.remove('hidden');
-                setTimeout(() => copyMessage.classList.add('hidden'), 2000); // Hide message after 2 seconds
-            } catch (err) {
-                console.error('Falha ao copiar texto: ', err);
-                // Fallback for older browsers or environments where execCommand is restricted
-                alert('Não foi possível copiar o texto automaticamente. Por favor, copie manualmente.');
-            } finally {
-                document.body.removeChild(textArea);
-            }
+        // Initial state: disable button until FFmpeg is loaded
+        extractButton.disabled = true;
+
+        // The copyToClipboard function is no longer directly relevant to the main flow
+        // as the primary output is now an audio file.
+        function copyToClipboard() {
+            // This function is kept for completeness but is not used in the current audio extraction flow.
         }
     </script>
 </body>
