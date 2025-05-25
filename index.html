@@ -1,81 +1,182 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoText AI - Extraia Texto de Vídeos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+        }
+        .hero-bg {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Gradient from indigo to purple */
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <section class="hero-bg text-white py-20 md:py-32 rounded-b-3xl shadow-lg">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
+                Extraia o Texto de Qualquer Vídeo Instantaneamente
+            </h1>
+            <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
+                Transforme seu conteúdo de vídeo em texto editável e pesquisável com nossa ferramenta poderosa e intuitiva.
+            </p>
+            <a href="#demonstracao" class="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-bounce-in">
+                Experimente Agora
+            </a>
+        </div>
+    </section>
 
-    <script src="tailwindcss.js"></script>
-  </head>
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-slate-50 justify-between group/design-root overflow-x-hidden" style='font-family: Inter, "Noto Sans", sans-serif;'>
-      <div>
-        <div class="flex items-center bg-slate-50 p-4 pb-2 justify-between">
-          <h2 class="text-[#0d151c] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pl-12 pr-12">Transcribe</h2>
-        </div>
-        <h2 class="text-[#0d151c] tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Transcribe your videos with AI</h2>
-        <p class="text-[#0d151c] text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
-          Get accurate transcripts of your videos in minutes. Upload your video and let our AI do the rest.
-        </p>
-        <div class="flex flex-col p-4">
-          <div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#cedce8] px-6 py-14">
-            <div class="flex max-w-[480px] flex-col items-center gap-2">
-              <p class="text-[#0d151c] text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">Upload Video</p>
-              <p class="text-[#0d151c] text-sm font-normal leading-normal max-w-[480px] text-center">Tap to select a video file from your device.</p>
+    <section class="py-16 md:py-24 bg-white rounded-3xl mx-4 -mt-16 relative z-10 shadow-xl">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Recursos que Você Vai Amar</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl mb-4 text-indigo-500">✍️</div>
+                    <h3 class="text-xl font-semibold mb-3">Precisão Incrível</h3>
+                    <p class="text-gray-600">Nossa IA avançada garante transcrições altamente precisas, mesmo em vídeos com áudio desafiador.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl mb-4 text-purple-500">⚡</div>
+                    <h3 class="text-xl font-semibold mb-3">Velocidade Relâmpago</h3>
+                    <p class="text-gray-600">Obtenha suas transcrições em minutos, não em horas, economizando seu tempo valioso.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="text-5xl mb-4 text-pink-500">🌐</div>
+                    <h3 class="text-xl font-semibold mb-3">Suporte a Múltiplos Formatos</h3>
+                    <p class="text-gray-600">Compatível com os formatos de vídeo mais populares para sua conveniência.</p>
+                </div>
             </div>
-            <button
-              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#e7edf4] text-[#0d151c] text-sm font-bold leading-normal tracking-[0.015em]"
-            >
-              <span class="truncate">Select File</span>
-            </button>
-          </div>
         </div>
-        <div class="flex px-4 py-3">
-          <button
-            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#0b80ee] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]"
-          >
-            <span class="truncate">Start Transcription</span>
-          </button>
+    </section>
+
+    <section id="demonstracao" class="py-16 md:py-24 bg-gray-100 rounded-3xl mx-4 mt-8 shadow-xl">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Veja Como Funciona</h2>
+            <p class="text-lg text-gray-700 text-center mb-10 max-w-2xl mx-auto">
+                Faça o upload do seu vídeo e nossa ferramenta fará a mágica de transformar a fala em texto. É simples, rápido e eficiente!
+            </p>
+
+            <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg max-w-2xl mx-auto border border-gray-200">
+                <h3 class="text-2xl font-semibold text-center mb-6 text-indigo-700">Upload do Vídeo</h3>
+                <div class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl p-8 mb-6 text-center bg-gray-50 hover:border-indigo-400 transition duration-300 ease-in-out cursor-pointer">
+                    <input type="file" id="videoUpload" accept="video/*" class="hidden" onchange="displayFileName(event)">
+                    <label for="videoUpload" class="cursor-pointer">
+                        <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p class="mt-4 text-lg text-gray-600">Arraste e solte seu vídeo aqui ou <span class="font-medium text-indigo-600 hover:text-indigo-500">clique para selecionar</span></p>
+                        <p class="text-sm text-gray-500">(Max. 500MB)</p>
+                    </label>
+                    <p id="fileName" class="mt-4 text-sm text-gray-700 font-medium"></p>
+                </div>
+
+                <button onclick="extractText()" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                    Extrair Texto
+                </button>
+
+                <div id="loadingIndicator" class="hidden mt-6 text-center text-indigo-600 font-semibold">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 inline-block"></div>
+                    <p class="mt-2">Extraindo texto, por favor aguarde...</p>
+                </div>
+
+                <div id="extractedTextContainer" class="hidden mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg shadow-inner">
+                    <h4 class="text-xl font-semibold mb-4 text-indigo-800">Texto Extraído:</h4>
+                    <pre id="extractedText" class="whitespace-pre-wrap text-gray-800 text-base leading-relaxed"></pre>
+                    <button onclick="copyToClipboard()" class="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200 ease-in-out">
+                        Copiar Texto
+                    </button>
+                    <div id="copyMessage" class="hidden mt-2 text-sm text-green-700">Texto copiado!</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div>
-        <div class="flex gap-2 border-t border-[#e7edf4] bg-slate-50 px-4 pb-3 pt-2">
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-[#0d151c]" href="#">
-            <div class="text-[#0d151c] flex h-8 items-center justify-center" data-icon="House" data-size="24px" data-weight="fill">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                <path
-                  d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"
-                ></path>
-              </svg>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-10 mt-16 rounded-t-3xl shadow-inner">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; 2025 VideoText AI. Todos os direitos reservados.</p>
+            <p class="text-sm">Desenvolvido com ❤️ para transformar seus vídeos.</p>
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Privacidade</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Termos de Serviço</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Contato</a>
             </div>
-          </a>
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#49749c]" href="#">
-            <div class="text-[#49749c] flex h-8 items-center justify-center" data-icon="Video" data-size="24px" data-weight="regular">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                <path
-                  d="M164.44,105.34l-48-32A8,8,0,0,0,104,80v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,129.05V95l25.58,17ZM216,40H40A16,16,0,0,0,24,56V168a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,128H40V56H216V168Zm16,40a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16H224A8,8,0,0,1,232,208Z"
-                ></path>
-              </svg>
-            </div>
-          </a>
-          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#49749c]" href="#">
-            <div class="text-[#49749c] flex h-8 items-center justify-center" data-icon="Gear" data-size="24px" data-weight="regular">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                <path
-                  d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"
-                ></path>
-              </svg>
-            </div>
-          </a>
         </div>
-        <div class="h-5 bg-slate-50"></div>
-      </div>
-    </div>
-  </body>
+    </footer>
+
+    <script>
+        function displayFileName(event) {
+            const fileNameDisplay = document.getElementById('fileName');
+            if (event.target.files.length > 0) {
+                fileNameDisplay.textContent = `Arquivo selecionado: ${event.target.files[0].name}`;
+            } else {
+                fileNameDisplay.textContent = '';
+            }
+        }
+
+        async function extractText() {
+            const videoInput = document.getElementById('videoUpload');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const extractedTextContainer = document.getElementById('extractedTextContainer');
+            const extractedText = document.getElementById('extractedText');
+            const copyMessage = document.getElementById('copyMessage');
+
+            // Reset previous states
+            extractedTextContainer.classList.add('hidden');
+            copyMessage.classList.add('hidden');
+            extractedText.textContent = '';
+
+            if (videoInput.files.length === 0) {
+                alert('Por favor, selecione um arquivo de vídeo para upload.');
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+
+            // Simulate API call for text extraction
+            // In a real application, you would send the video file to a backend API here.
+            // For this demo, we'll just simulate a delay and provide dummy text.
+            await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate 3 seconds delay
+
+            const dummyText = `
+                Olá a todos! Bem-vindos à demonstração da nossa ferramenta VideoText AI.
+                Com esta ferramenta, você pode facilmente extrair texto de qualquer vídeo.
+                Basta fazer o upload do seu arquivo de vídeo e nós faremos o resto.
+                É perfeito para criar legendas, pesquisar conteúdo de vídeo ou apenas obter uma transcrição rápida.
+                Esperamos que você goste de usar nossa ferramenta!
+            `;
+
+            loadingIndicator.classList.add('hidden');
+            extractedText.textContent = dummyText.trim();
+            extractedTextContainer.classList.remove('hidden');
+        }
+
+        function copyToClipboard() {
+            const extractedText = document.getElementById('extractedText');
+            const copyMessage = document.getElementById('copyMessage');
+
+            // Use document.execCommand('copy') for better compatibility in iframes
+            const textArea = document.createElement("textarea");
+            textArea.value = extractedText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copyMessage.classList.remove('hidden');
+                setTimeout(() => copyMessage.classList.add('hidden'), 2000); // Hide message after 2 seconds
+            } catch (err) {
+                console.error('Falha ao copiar texto: ', err);
+                // Fallback for older browsers or environments where execCommand is restricted
+                alert('Não foi possível copiar o texto automaticamente. Por favor, copie manualmente.');
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    </script>
+</body>
 </html>
