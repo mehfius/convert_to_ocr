@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Extrair Áudio de Vídeo</title>
+  <style>
+    #progressBar {
+      width: 100%;
+      background-color: #f3f3f3;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    #progressBar div {
+      height: 20px;
+      background-color: #4caf50;
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 5px;
+      width: 0%;
+    }
+  </style>
+</head>
+<body>
+  <h2>Selecione um vídeo para extrair o áudio:</h2>
+  <input type="file" id="videoInput" accept="video/*" />
+  <button id="extractBtn">Extrair Áudio (MP3)</button>
+
+  <p id="status">Status: Carregando FFmpeg...</p>
+
+  <div id="progressBar">
+    <div id="progressText">0%</div>
+  </div>
+
+  <!-- FFmpeg WebAssembly -->
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js"></script>
+
+  <script>
+    const { createFFmpeg, fetchFile } = FFmpeg;
+    const ffmpeg = createFFmpeg({ log: true });
+
+    const extractButton = document.getElementById('extractBtn');
+    const status = document.getElementById('status');
+    const progressBar = document.getElementById('progressText');
+
+    // Carrega FFmpeg apenas uma vez ao iniciar
+    (async () => {
+      await ffmpeg.load();
+      status.textContent = 'Status: Aguardando seleção...';
+    })();
+
+    extractButton.addEventListener('click', async () => {
+      const fileInput = document.getElementById('videoInput');
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert('Por favor, selecione um arquivo de vídeo primeiro.');
+        return;
+      }
+
+      status.textContent = 'Status: Lendo arquivo...';
+      progressBar.textContent = '0%';
+      progressBar.style.width = '0%';
+
+      // Função auxiliar para verificar se o arquivo existe
+      function fileExists(filename) {
+        try {
+          ffmpeg.FS('stat', filename);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      // Limpar arquivos anteriores no FS (se existirem)
+      if (fileExists('input.mp4')) ffmpeg.FS('unlink', 'input.mp4');
+      if (fileExists('output.mp3')) ffmpeg.FS('unlink', 'output.mp3');
+
+      // Escrever novo arquivo
+      ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
+
+      status.textContent = 'Status: Extraindo áudio...';
+
+      // Monitora o progresso
+      ffmpeg.setProgress(({ ratio }) => {
+        const percent = Math.round(ratio * 100);
+        progressBar.textContent = `${percent}%`;
+        progressBar.style.width = `${percent}%`;
+      });
+
+      // Executar FFmpeg
+      await ffmpeg.run('-i', 'input.mp4', '-q:a', '0', '-map', 'a', 'output.mp3');
+
+      // Finalizando
+      status.textContent = 'Status: Gerando arquivo de áudio...';
+      const data = ffmpeg.FS('readFile', 'output.mp3');
+
+      const audioBlob = new Blob([data.buffer], { type: 'audio/mpeg' });
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      const downloadLink = document.createElement('a');
+      downloadLink.href = audioUrl;
+      downloadLink.download = 'audio-extraido.mp3';
+      downloadLink.click();
+
+      status.textContent = '✅ Áudio extraído com sucesso!';
+      progressBar.textContent = '100%';
+      progressBar.style.width = '100%';
+    });
+  </script>
+</body>
+</html>

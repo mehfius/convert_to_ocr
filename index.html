@@ -1,112 +1,81 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Extrair Áudio de Vídeo</title>
-  <style>
-    #progressBar {
-      width: 100%;
-      background-color: #f3f3f3;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    #progressBar div {
-      height: 20px;
-      background-color: #4caf50;
-      text-align: center;
-      line-height: 20px;
-      color: white;
-      border-radius: 5px;
-      width: 0%;
-    }
-  </style>
-</head>
-<body>
-  <h2>Selecione um vídeo para extrair o áudio:</h2>
-  <input type="file" id="videoInput" accept="video/*" />
-  <button id="extractBtn">Extrair Áudio (MP3)</button>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
 
-  <p id="status">Status: Carregando FFmpeg...</p>
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
-  <div id="progressBar">
-    <div id="progressText">0%</div>
-  </div>
-
-  <!-- FFmpeg WebAssembly -->
-  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.1/dist/ffmpeg.min.js"></script>
-
-  <script>
-    const { createFFmpeg, fetchFile } = FFmpeg;
-    const ffmpeg = createFFmpeg({ log: true });
-
-    const extractButton = document.getElementById('extractBtn');
-    const status = document.getElementById('status');
-    const progressBar = document.getElementById('progressText');
-
-    // Carrega FFmpeg apenas uma vez ao iniciar
-    (async () => {
-      await ffmpeg.load();
-      status.textContent = 'Status: Aguardando seleção...';
-    })();
-
-    extractButton.addEventListener('click', async () => {
-      const fileInput = document.getElementById('videoInput');
-      const file = fileInput.files[0];
-
-      if (!file) {
-        alert('Por favor, selecione um arquivo de vídeo primeiro.');
-        return;
-      }
-
-      status.textContent = 'Status: Lendo arquivo...';
-      progressBar.textContent = '0%';
-      progressBar.style.width = '0%';
-
-      // Função auxiliar para verificar se o arquivo existe
-      function fileExists(filename) {
-        try {
-          ffmpeg.FS('stat', filename);
-          return true;
-        } catch (e) {
-          return false;
-        }
-      }
-
-      // Limpar arquivos anteriores no FS (se existirem)
-      if (fileExists('input.mp4')) ffmpeg.FS('unlink', 'input.mp4');
-      if (fileExists('output.mp3')) ffmpeg.FS('unlink', 'output.mp3');
-
-      // Escrever novo arquivo
-      ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
-
-      status.textContent = 'Status: Extraindo áudio...';
-
-      // Monitora o progresso
-      ffmpeg.setProgress(({ ratio }) => {
-        const percent = Math.round(ratio * 100);
-        progressBar.textContent = `${percent}%`;
-        progressBar.style.width = `${percent}%`;
-      });
-
-      // Executar FFmpeg
-      await ffmpeg.run('-i', 'input.mp4', '-q:a', '0', '-map', 'a', 'output.mp3');
-
-      // Finalizando
-      status.textContent = 'Status: Gerando arquivo de áudio...';
-      const data = ffmpeg.FS('readFile', 'output.mp3');
-
-      const audioBlob = new Blob([data.buffer], { type: 'audio/mpeg' });
-      const audioUrl = URL.createObjectURL(audioBlob);
-
-      const downloadLink = document.createElement('a');
-      downloadLink.href = audioUrl;
-      downloadLink.download = 'audio-extraido.mp3';
-      downloadLink.click();
-
-      status.textContent = '✅ Áudio extraído com sucesso!';
-      progressBar.textContent = '100%';
-      progressBar.style.width = '100%';
-    });
-  </script>
-</body>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-slate-50 justify-between group/design-root overflow-x-hidden" style='font-family: Inter, "Noto Sans", sans-serif;'>
+      <div>
+        <div class="flex items-center bg-slate-50 p-4 pb-2 justify-between">
+          <h2 class="text-[#0d151c] text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pl-12 pr-12">Transcribe</h2>
+        </div>
+        <h2 class="text-[#0d151c] tracking-light text-[28px] font-bold leading-tight px-4 text-center pb-3 pt-5">Transcribe your videos with AI</h2>
+        <p class="text-[#0d151c] text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">
+          Get accurate transcripts of your videos in minutes. Upload your video and let our AI do the rest.
+        </p>
+        <div class="flex flex-col p-4">
+          <div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#cedce8] px-6 py-14">
+            <div class="flex max-w-[480px] flex-col items-center gap-2">
+              <p class="text-[#0d151c] text-lg font-bold leading-tight tracking-[-0.015em] max-w-[480px] text-center">Upload Video</p>
+              <p class="text-[#0d151c] text-sm font-normal leading-normal max-w-[480px] text-center">Tap to select a video file from your device.</p>
+            </div>
+            <button
+              class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#e7edf4] text-[#0d151c] text-sm font-bold leading-normal tracking-[0.015em]"
+            >
+              <span class="truncate">Select File</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex px-4 py-3">
+          <button
+            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#0b80ee] text-slate-50 text-base font-bold leading-normal tracking-[0.015em]"
+          >
+            <span class="truncate">Start Transcription</span>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div class="flex gap-2 border-t border-[#e7edf4] bg-slate-50 px-4 pb-3 pt-2">
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-[#0d151c]" href="#">
+            <div class="text-[#0d151c] flex h-8 items-center justify-center" data-icon="House" data-size="24px" data-weight="fill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"
+                ></path>
+              </svg>
+            </div>
+          </a>
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#49749c]" href="#">
+            <div class="text-[#49749c] flex h-8 items-center justify-center" data-icon="Video" data-size="24px" data-weight="regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M164.44,105.34l-48-32A8,8,0,0,0,104,80v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,129.05V95l25.58,17ZM216,40H40A16,16,0,0,0,24,56V168a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,128H40V56H216V168Zm16,40a8,8,0,0,1-8,8H32a8,8,0,0,1,0-16H224A8,8,0,0,1,232,208Z"
+                ></path>
+              </svg>
+            </div>
+          </a>
+          <a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#49749c]" href="#">
+            <div class="text-[#49749c] flex h-8 items-center justify-center" data-icon="Gear" data-size="24px" data-weight="regular">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                <path
+                  d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"
+                ></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <div class="h-5 bg-slate-50"></div>
+      </div>
+    </div>
+  </body>
 </html>
