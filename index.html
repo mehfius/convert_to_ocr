@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VideoText AI - Extraia Texto de Vídeos</title>
+    <title>VideoText AI - Extraia Áudio de Vídeos</title>
     <script src="tailwindcss.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light blue-gray background */
-        }
-        .hero-bg {
-            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Gradient from indigo to purple */
-        }
-    </style>
 </head>
-<body class="antialiased text-gray-800">
+<body class="antialiased text-gray-800 font-inter bg-gray-50">
 
-    <section class="hero-bg text-white py-20 md:py-32 rounded-b-3xl shadow-lg">
+    <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20 md:py-32 rounded-b-3xl shadow-lg">
         <div class="container mx-auto px-6 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
-                Extraia o Texto de Qualquer Vídeo Instantaneamente
+                Extraia o Áudio de Qualquer Vídeo Instantaneamente
             </h1>
             <p class="text-lg md:text-xl mb-10 opacity-90 animate-fade-in-up">
-                Transforme seu conteúdo de vídeo em texto editável e pesquisável com nossa ferramenta poderosa e intuitiva.
+                Transforme o seu conteúdo de vídeo em áudio MP3 com a nossa ferramenta poderosa e intuitiva.
             </p>
             <a href="#demonstracao" class="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-bounce-in">
                 Experimente Agora
@@ -34,22 +25,22 @@
 
     <section class="py-16 md:py-24 bg-white rounded-3xl mx-4 -mt-16 relative z-10 shadow-xl">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Recursos que Você Vai Amar</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Recursos que Vai Adorar</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
-                    <div class="text-5xl mb-4 text-indigo-500">✍️</div>
-                    <h3 class="text-xl font-semibold mb-3">Precisão Incrível</h3>
-                    <p class="text-gray-600">Nossa IA avançada garante transcrições altamente precisas, mesmo em vídeos com áudio desafiador.</p>
+                    <div class="text-5xl mb-4 text-indigo-500">🎧</div>
+                    <h3 class="text-xl font-semibold mb-3">Áudio de Alta Qualidade</h3>
+                    <p class="text-gray-600">Extraia áudio com fidelidade, preservando a qualidade original do seu vídeo.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
                     <div class="text-5xl mb-4 text-purple-500">⚡</div>
                     <h3 class="text-xl font-semibold mb-3">Velocidade Relâmpago</h3>
-                    <p class="text-gray-600">Obtenha suas transcrições em minutos, não em horas, economizando seu tempo valioso.</p>
+                    <p class="text-gray-600">Obtenha os seus ficheiros MP3 em minutos, economizando o seu tempo valioso.</p>
                 </div>
                 <div class="bg-gray-50 p-8 rounded-2xl shadow-md text-center transform hover:scale-105 transition duration-300 ease-in-out">
                     <div class="text-5xl mb-4 text-pink-500">🌐</div>
                     <h3 class="text-xl font-semibold mb-3">Suporte a Múltiplos Formatos</h3>
-                    <p class="text-gray-600">Compatível com os formatos de vídeo mais populares para sua conveniência.</p>
+                    <p class="text-gray-600">Compatível com os formatos de vídeo mais populares para a sua conveniência.</p>
                 </div>
             </div>
         </div>
@@ -59,7 +50,7 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Veja Como Funciona</h2>
             <p class="text-lg text-gray-700 text-center mb-10 max-w-2xl mx-auto">
-                Faça o upload do seu vídeo e nossa ferramenta fará a mágica de transformar a fala em texto. É simples, rápido e eficiente!
+                Faça o upload do seu vídeo e a nossa ferramenta fará a magia de transformar o áudio em MP3. É simples, rápido e eficiente!
             </p>
 
             <div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg max-w-2xl mx-auto border border-gray-200">
@@ -70,28 +61,44 @@
                         <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                         </svg>
-                        <p class="mt-4 text-lg text-gray-600">Arraste e solte seu vídeo aqui ou <span class="font-medium text-indigo-600 hover:text-indigo-500">clique para selecionar</span></p>
-                        <p class="text-sm text-gray-500">(Max. 500MB)</p>
+                        <p class="mt-4 text-lg text-gray-600">Arraste e solte o seu vídeo aqui ou <span class="font-medium text-indigo-600 hover:text-indigo-500">clique para selecionar</span></p>
+                        <p class="text-sm text-gray-500">(Máx. 500MB)</p>
                     </label>
                     <p id="fileName" class="mt-4 text-sm text-gray-700 font-medium"></p>
                 </div>
 
-                <button onclick="extractText()" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
-                    Extrair Texto
+                <button id="extractBtn" onclick="extractAudio()" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-xl shadow-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                    Extrair Áudio (MP3)
                 </button>
+
+                <p id="status" class="mt-6 text-center text-gray-700">Status: Pronto para extrair.</p>
+
+                <div id="progressBarContainer" class="w-full bg-gray-200 rounded-md mt-4 overflow-hidden">
+                    <div id="progressBar" class="h-6 bg-green-500 text-white text-center leading-6 rounded-md transition-all duration-300 ease-in-out w-0">0%</div>
+                </div>
 
                 <div id="loadingIndicator" class="hidden mt-6 text-center text-indigo-600 font-semibold">
                     <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 inline-block"></div>
-                    <p class="mt-2">Extraindo texto, por favor aguarde...</p>
+                    <p class="mt-2">A extrair áudio, por favor aguarde...</p>
                 </div>
 
-                <div id="extractedTextContainer" class="hidden mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg shadow-inner">
-                    <h4 class="text-xl font-semibold mb-4 text-indigo-800">Texto Extraído:</h4>
-                    <pre id="extractedText" class="whitespace-pre-wrap text-gray-800 text-base leading-relaxed"></pre>
-                    <button onclick="copyToClipboard()" class="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200 ease-in-out">
-                        Copiar Texto
+                <div id="audioDownloadContainer" class="hidden mt-8 p-6 bg-indigo-50 border border-indigo-200 rounded-lg shadow-inner text-center flex flex-col items-center space-y-4">
+                    <h4 class="text-xl font-semibold mb-4 text-indigo-800">Áudio Extraído:</h4>
+                    <a id="audioDownloadLink" href="#" class="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200 ease-in-out" download>Descarregar Áudio (WAV)</a>
+                    <button id="transcribeBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        Transcrever Áudio
                     </button>
-                    <div id="copyMessage" class="hidden mt-2 text-sm text-green-700">Texto copiado!</div>
+                </div>
+
+                <div id="transcriptionLoadingIndicator" class="hidden mt-6 text-center text-indigo-600 font-semibold">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 inline-block"></div>
+                    <p class="mt-2">A transcrever áudio, por favor aguarde...</p>
+                </div>
+
+                <div id="transcriptionResultContainer" class="hidden mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-inner text-left">
+                    <h4 class="text-xl font-semibold mb-4 text-gray-800">Transcrição:</h4>
+                    <div id="transcriptionSegments" class="space-y-3">
+                        </div>
                 </div>
             </div>
         </div>
@@ -100,83 +107,26 @@
     <footer class="bg-gray-800 text-white py-10 mt-16 rounded-t-3xl shadow-inner">
         <div class="container mx-auto px-6 text-center">
             <p class="mb-4">&copy; 2025 VideoText AI. Todos os direitos reservados.</p>
-            <p class="text-sm">Desenvolvido com ❤️ para transformar seus vídeos.</p>
+            <p class="text-sm">Desenvolvido com ❤️ para transformar os seus vídeos.</p>
             <div class="mt-6 flex justify-center space-x-6">
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Privacidade</a>
                 <a href="#" class="text-gray-400 hover:text-white transition duration-200">Termos de Serviço</a>
-                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Contato</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-200">Contacto</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        function displayFileName(event) {
-            const fileNameDisplay = document.getElementById('fileName');
-            if (event.target.files.length > 0) {
-                fileNameDisplay.textContent = `Arquivo selecionado: ${event.target.files[0].name}`;
-            } else {
-                fileNameDisplay.textContent = '';
-            }
-        }
+    <div id="messageModal" class="fixed inset-0 z-[1000] bg-black bg-opacity-40 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-xl shadow-lg max-w-sm text-center relative">
+            <button class="absolute top-2 right-4 text-gray-400 text-2xl font-bold cursor-pointer hover:text-black" onclick="closeMessageModal()">&times;</button>
+            <p id="modalMessage" class="text-lg text-gray-800 mt-4"></p>
+            <button onclick="closeMessageModal()" class="mt-6 bg-indigo-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-indigo-700 transition duration-300">
+                OK
+            </button>
+        </div>
+    </div>
 
-        async function extractText() {
-            const videoInput = document.getElementById('videoUpload');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const extractedTextContainer = document.getElementById('extractedTextContainer');
-            const extractedText = document.getElementById('extractedText');
-            const copyMessage = document.getElementById('copyMessage');
-
-            // Reset previous states
-            extractedTextContainer.classList.add('hidden');
-            copyMessage.classList.add('hidden');
-            extractedText.textContent = '';
-
-            if (videoInput.files.length === 0) {
-                alert('Por favor, selecione um arquivo de vídeo para upload.');
-                return;
-            }
-
-            loadingIndicator.classList.remove('hidden');
-
-            // Simulate API call for text extraction
-            // In a real application, you would send the video file to a backend API here.
-            // For this demo, we'll just simulate a delay and provide dummy text.
-            await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate 3 seconds delay
-
-            const dummyText = `
-                Olá a todos! Bem-vindos à demonstração da nossa ferramenta VideoText AI.
-                Com esta ferramenta, você pode facilmente extrair texto de qualquer vídeo.
-                Basta fazer o upload do seu arquivo de vídeo e nós faremos o resto.
-                É perfeito para criar legendas, pesquisar conteúdo de vídeo ou apenas obter uma transcrição rápida.
-                Esperamos que você goste de usar nossa ferramenta!
-            `;
-
-            loadingIndicator.classList.add('hidden');
-            extractedText.textContent = dummyText.trim();
-            extractedTextContainer.classList.remove('hidden');
-        }
-
-        function copyToClipboard() {
-            const extractedText = document.getElementById('extractedText');
-            const copyMessage = document.getElementById('copyMessage');
-
-            // Use document.execCommand('copy') for better compatibility in iframes
-            const textArea = document.createElement("textarea");
-            textArea.value = extractedText.textContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                copyMessage.classList.remove('hidden');
-                setTimeout(() => copyMessage.classList.add('hidden'), 2000); // Hide message after 2 seconds
-            } catch (err) {
-                console.error('Falha ao copiar texto: ', err);
-                // Fallback for older browsers or environments where execCommand is restricted
-                alert('Não foi possível copiar o texto automaticamente. Por favor, copie manualmente.');
-            } finally {
-                document.body.removeChild(textArea);
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+    <script src="video-to-text-landing-page.js"></script>
 </body>
 </html>
