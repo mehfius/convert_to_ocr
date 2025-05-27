@@ -130,6 +130,13 @@ async function extractAudio() {
     }
 }
 
+// Função auxiliar para formatar o tempo para HH:MM:SS
+function formatTimeHHMMSS(timeString) {
+    if (!timeString) return '';
+    // Apenas pega a parte antes do ponto, removendo milissegundos
+    return timeString.split('.')[0];
+}
+
 async function transcribeAudio() {
     if (!lastExtractedAudioBlob) {
         showMessage('Nenhum áudio extraído para transcrever. Por favor, extraia o áudio primeiro.');
@@ -145,7 +152,7 @@ async function transcribeAudio() {
     try {
         const formData = new FormData();
         formData.append('file', lastExtractedAudioBlob, 'audio-extraido.wav');
-        formData.append('model', 'ggml-base.bin'); // Adicionando o modelo conforme o cURL
+        formData.append('model', 'ggml-base.bin');
 
         const apiUrl = 'https://reindeer-evident-primarily.ngrok-free.app/transcribe';
 
@@ -166,8 +173,12 @@ async function transcribeAudio() {
             result.transcription_segments.forEach(segment => {
                 const segmentDiv = document.createElement('div');
                 segmentDiv.classList.add('bg-gray-100', 'border', 'border-gray-300', 'rounded-lg', 'p-3', 'mb-2', 'text-left');
+                
+                // Formata o tempo usando a nova função
+                const startTimeFormatted = formatTimeHHMMSS(segment.start);
+
                 segmentDiv.innerHTML = `
-                    <span class="font-semibold text-indigo-700 block mb-1">${segment.start} - ${segment.end}</span>
+                    <span class="font-semibold text-indigo-700 block mb-1">${startTimeFormatted}</span>
                     <p class="text-gray-800 leading-tight">${segment.text}</p>
                 `;
                 transcriptionSegmentsDiv.appendChild(segmentDiv);
